@@ -1,0 +1,550 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marlonzy Educational Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ghana-red:    #CE1126;
+      --ghana-gold:   #FCD116;
+      --ghana-green:  #006B3F;
+      --ghana-black:  #000000;
+      --de-black:     #1a1a1a;
+      --de-red:       #CC0000;
+      --de-gold:      #FFCC00;
+      --cream:        #FDFAF2;
+      --text-dark:    #111111;
+      --text-mid:     #444444;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── FLAG STRIPE TOP ── */
+    .flag-stripe {
+      display: flex;
+      height: 7px;
+      width: 100%;
+    }
+    .flag-stripe span {
+      flex: 1;
+    }
+    .flag-stripe .s1 { background: var(--ghana-red); }
+    .flag-stripe .s2 { background: var(--ghana-gold); }
+    .flag-stripe .s3 { background: var(--ghana-green); }
+    .flag-stripe .s4 { background: var(--de-black); }
+    .flag-stripe .s5 { background: var(--de-red); }
+    .flag-stripe .s6 { background: var(--de-gold); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: var(--de-black);
+      color: #fff;
+      padding: 80px 40px 90px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(206,17,38,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(0,107,63,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(252,209,22,0.15) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-flag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+    }
+
+    .flag-icon {
+      font-size: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      max-width: 780px;
+      margin: 0 auto 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      color: var(--ghana-gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+
+    .btn-primary {
+      background: var(--ghana-gold);
+      color: var(--de-black);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover { border-color: #fff; }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 72px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ghana-red);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* ── SERVICES ── */
+    .services-bg {
+      background: var(--de-black);
+      color: #fff;
+    }
+
+    .services-bg .section-label { color: var(--ghana-gold); }
+    .services-bg .section-title { color: #fff; }
+    .services-bg .section-desc  { color: rgba(255,255,255,0.6); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ghana-red), var(--ghana-gold), var(--ghana-green));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .service-card:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(252,209,22,0.3);
+      transform: translateY(-3px);
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .service-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .service-hint {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* ── WHY US ── */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .pillar {
+      border-left: 3px solid var(--ghana-gold);
+      padding-left: 20px;
+    }
+
+    .pillar-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--ghana-red);
+      margin-bottom: 8px;
+    }
+
+    .pillar-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .pillar-text {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    /* ── DIVIDER STRIPE ── */
+    .mid-stripe {
+      display: flex;
+      height: 5px;
+    }
+    .mid-stripe span { flex: 1; }
+    .ms1 { background: var(--ghana-red); }
+    .ms2 { background: var(--ghana-gold); }
+    .ms3 { background: var(--ghana-green); }
+
+    /* ── CONTACT ── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .contact-wrap { grid-template-columns: 1fr; }
+      .hero { padding: 60px 20px 70px; }
+      .section { padding: 56px 20px; }
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--ghana-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      margin-bottom: 3px;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+    .contact-value:hover { color: var(--ghana-red); }
+
+    /* ── CONTACT CARD ── */
+    .contact-card {
+      background: var(--de-black);
+      color: #fff;
+      border-radius: 16px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::after {
+      content: '🌍';
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      font-size: 80px;
+      opacity: 0.07;
+    }
+
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .contact-card .btn-primary {
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--de-black);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: var(--ghana-gold);
+      font-weight: 600;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1       { animation: fadeUp 0.7s ease both; }
+    .hero-sub      { animation: fadeUp 0.7s 0.15s ease both; }
+    .hero-cta      { animation: fadeUp 0.7s 0.28s ease both; }
+    .hero-flag-badge { animation: fadeUp 0.5s ease both; }
+  </style>
+</head>
+<body>
+
+  <!-- Flag stripe top -->
+  <div class="flag-stripe">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span>
+    <span class="s4"></span><span class="s5"></span><span class="s6"></span>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-flag-badge">
+      <span class="flag-icon">🇬🇭</span> Ghana &nbsp;·&nbsp; Germany <span class="flag-icon">🇩🇪</span>
+    </div>
+    <h1>Your Study Abroad Dream <span>Starts Here</span></h1>
+    <p class="hero-sub">
+      We help students secure admission and student visas to study abroad with ease —
+      from choosing the right school to preparing strong applications and guiding you
+      through the visa process.
+    </p>
+    <div class="hero-cta">
+      <a href="tel:+233554510756" class="btn btn-primary">📞 Call Us Now</a>
+      <a href="mailto:oforimarlon3@gmail.com" class="btn btn-outline">✉️ Send an Email</a>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <div class="services-bg">
+    <div class="section">
+      <div class="section-label">What we offer</div>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-desc">Everything you need to get from here to your dream university — we handle it all.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">🎓</span>
+          <div class="service-name">University Selection</div>
+          <div class="service-hint">Find the best school that matches your goals and budget</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">📋</span>
+          <div class="service-name">Application Assistance</div>
+          <div class="service-hint">Strong, complete applications that stand out</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🛂</span>
+          <div class="service-name">Visa Guidance</div>
+          <div class="service-hint">Step-by-step help through the visa process</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🎤</span>
+          <div class="service-name">Interview Preparation</div>
+          <div class="service-hint">Confidence-building coaching for visa interviews</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🏦</span>
+          <div class="service-name">Block Account</div>
+          <div class="service-hint">Assistance setting up your blocked account for Germany</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mid stripe -->
+  <div class="mid-stripe">
+    <span class="ms1"></span><span class="ms2"></span><span class="ms3"></span>
+  </div>
+
+  <!-- Why Us -->
+  <section class="section">
+    <div class="section-label">Why choose us</div>
+    <h2 class="section-title">We Make It Simple</h2>
+    <p class="section-desc">Studying abroad is a big step. We've guided many students through it — and we'll guide you too.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">End-to-End Support</div>
+        <div class="pillar-text">From school selection all the way to your visa — we're with you every step.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Ghana–Germany Focus</div>
+        <div class="pillar-text">We know exactly what it takes to get a Ghanaian student into a German university.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Personalised Advice</div>
+        <div class="pillar-text">No one-size-fits-all. Your plan is built around your specific situation and goals.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div class="pillar-title">Stress-Free Process</div>
+        <div class="pillar-text">We handle the paperwork, timelines, and follow-ups so you can focus on preparing.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <div style="background: #f5f1e8;">
+    <div class="section">
+      <div class="section-label">Get in touch</div>
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-desc">We're based in Accra and ready to help you start your journey today.</p>
+
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-dot">📞</div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <a href="tel:+233554510756" class="contact-value">+233 554 510 756</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-dot">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <a href="mailto:oforimarlon3@gmail.com" class="contact-value">oforimarlon3@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-dot">📍</div>
+            <div>
+              <div class="contact-label">Location</div>
+              <span class="contact-value">North Legon, Accra, Ghana</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Ready to study abroad?</h3>
+          <p>Send us a message or give us a call. Our team will get back to you within 24 hours and walk you through the next steps.</p>
+          <a href="mailto:oforimarlon3@gmail.com" class="btn btn-primary">Start Your Application →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="flag-stripe" style="height:4px;margin-bottom:20px;">
+      <span class="s1"></span><span class="s2"></span><span class="s3"></span>
+      <span class="s4"></span><span class="s5"></span><span class="s6"></span>
+    </div>
+    &copy; 2025 <strong>Marlonzy Educational Services</strong> &nbsp;·&nbsp; North Legon, Accra, Ghana &nbsp;·&nbsp; 🇬🇭 &nbsp;🇩🇪
+  </footer>
+
+</body>
+</html>
